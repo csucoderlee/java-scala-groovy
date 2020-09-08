@@ -1,5 +1,7 @@
 package org.csu.coderlee.interview.greyireland;
 
+import java.util.LinkedList;
+import java.util.Queue;
 import java.util.Stack;
 
 /**
@@ -53,6 +55,10 @@ public class TestBinaryTreeTraversal {
 
         //后序遍历，输出 4 3 5 8 9 7 6
         postOrderTraversal1(root);
+        System.out.println("--------");
+
+        //广度优先遍历 6 5 7 4 3 8 9
+        bfsTraversal(root);
         System.out.println("--------");
 
     }
@@ -181,6 +187,41 @@ public class TestBinaryTreeTraversal {
                 }
             }
         }
+    }
+
+    /**
+     * 广度优先搜索
+     * @param root
+     */
+    private static void bfsTraversal(Node root) {
+        if (root == null) return;
+        Queue<Node> queue = new LinkedList<>();
+        queue.add(root);
+
+        while (!queue.isEmpty()) {
+
+            Node poll = queue.poll();
+            System.out.println(poll.getValue());
+
+            if (poll.getLeft() != null) {
+                queue.add(poll.getLeft());
+            }
+
+            if (poll.getRight() != null) {
+                queue.add(poll.getRight());
+            }
+        }
+
+    }
+
+    /**
+     * 深度优先搜索
+     * @param root
+     */
+    private static void dfsTraversal(Node root) {
+        //略，即先序遍历
+        //先从根节点出发,沿着左子树纵向遍历直至找到叶子节点，然后回溯到前一个节点，遍历右子树
+        return;
     }
 }
 
