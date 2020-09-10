@@ -1,5 +1,7 @@
 package org.csu.coderlee.interview.greyireland;
 
+import org.csu.coderlee.interview.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -19,7 +21,7 @@ public class MaxDepthOfBinaryTree {
      * @param root
      * @return
      */
-    private static int maxDepthByDfs(Node root) {
+    private static int maxDepthByDfs(TreeNode root) {
         if (root == null) return 0;
         int depthOfLeft = maxDepthByDfs(root.getLeft());
         int depthOfRight = maxDepthByDfs(root.getRight());
@@ -31,15 +33,15 @@ public class MaxDepthOfBinaryTree {
      * @param root
      * @return
      */
-    private static int maxDepthByBfs(Node root) {
+    private static int maxDepthByBfs(TreeNode root) {
         if (root == null) return 0;
-        Queue<Node> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         int depth = 0;
         queue.add(root);
         while (!queue.isEmpty()) {
             int size = queue.size();
             while (size > 0) {
-                Node poll = queue.poll();
+                TreeNode poll = queue.poll();
 
                 if (poll.getLeft() != null) {
                     queue.add(poll.getLeft());

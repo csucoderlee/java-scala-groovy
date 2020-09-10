@@ -1,5 +1,7 @@
 package org.csu.coderlee.interview.greyireland;
 
+import org.csu.coderlee.interview.TreeNode;
+
 import java.util.LinkedList;
 import java.util.Queue;
 import java.util.Stack;
@@ -28,10 +30,10 @@ public class TestBinaryTreeTraversal {
          *           / \  / \
          *          4  3 8  9
          */
-        Node root = new Node();
+        TreeNode root = new TreeNode();
         root.setValue(6);
-        root.setLeft(new Node().setValue(5).setLeft(new Node().setValue(4)).setRight(new Node().setValue(3)));
-        root.setRight(new Node().setValue(7).setLeft(new Node().setValue(8)).setRight(new Node().setValue(9)));
+        root.setLeft(new TreeNode().setValue(5).setLeft(new TreeNode().setValue(4)).setRight(new TreeNode().setValue(3)));
+        root.setRight(new TreeNode().setValue(7).setLeft(new TreeNode().setValue(8)).setRight(new TreeNode().setValue(9)));
 
         //前序遍历，输出 6 5 4 3 7 8 9
         preOrderTraversal(root);
@@ -68,7 +70,7 @@ public class TestBinaryTreeTraversal {
      * 前序遍历，递归方式
      * @param root
      */
-    private static void preOrderTraversal(Node root) {
+    private static void preOrderTraversal(TreeNode root) {
 
         if (root == null) return;
         System.out.println(root.getValue());
@@ -80,7 +82,7 @@ public class TestBinaryTreeTraversal {
      * 中序遍历，递归方式
      * @param root
      */
-    private static void inOrderTraversal(Node root) {
+    private static void inOrderTraversal(TreeNode root) {
         if (root == null) return;
         inOrderTraversal(root.getLeft());
         System.out.println(root.getValue());
@@ -91,7 +93,7 @@ public class TestBinaryTreeTraversal {
      * 后序遍历，递归方式
      * @param root
      */
-    private static void postOrderTraversal(Node root) {
+    private static void postOrderTraversal(TreeNode root) {
         if (root == null) return;
         postOrderTraversal(root.getLeft());
         postOrderTraversal(root.getRight());
@@ -101,16 +103,16 @@ public class TestBinaryTreeTraversal {
     /**
      * 前序遍历，非递归方式
      */
-    private static void preOrderTraversal1(Node root) {
+    private static void preOrderTraversal1(TreeNode root) {
         if (root == null) return;
-        Stack<Node> stack = new Stack<Node>();
+        Stack<TreeNode> stack = new Stack<TreeNode>();
 
         //放入根节点
         stack.push(root);
 
         while (!stack.empty()) {
             //取出根节点
-            Node p = stack.pop();
+            TreeNode p = stack.pop();
             System.out.println(p.getValue());
 
             //放入右子树
@@ -129,11 +131,11 @@ public class TestBinaryTreeTraversal {
      * 中序遍历，非递归方式
      * @param root
      */
-    private static void inOrderTraversal1(Node root) {
+    private static void inOrderTraversal1(TreeNode root) {
         if (root == null) return;
 
-        Stack<Node> stack = new Stack<>();
-        Node temp = root;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode temp = root;
         while (temp != null || !stack.isEmpty()) {
 
             while (temp != null) {
@@ -159,12 +161,12 @@ public class TestBinaryTreeTraversal {
      * 后序遍历，非递归方式
      * @param root
      */
-    private static void postOrderTraversal1(Node root) {
+    private static void postOrderTraversal1(TreeNode root) {
         if (root == null) return;
 
-        Stack<Node> stack = new Stack<>();
-        Node temp = root;
-        Node pre = null;
+        Stack<TreeNode> stack = new Stack<>();
+        TreeNode temp = root;
+        TreeNode pre = null;
 
         while (temp != null || !stack.isEmpty()) {
 
@@ -193,14 +195,14 @@ public class TestBinaryTreeTraversal {
      * 广度优先搜索
      * @param root
      */
-    private static void bfsTraversal(Node root) {
+    private static void bfsTraversal(TreeNode root) {
         if (root == null) return;
-        Queue<Node> queue = new LinkedList<>();
+        Queue<TreeNode> queue = new LinkedList<>();
         queue.add(root);
 
         while (!queue.isEmpty()) {
 
-            Node poll = queue.poll();
+            TreeNode poll = queue.poll();
             System.out.println(poll.getValue());
 
             if (poll.getLeft() != null) {
@@ -218,7 +220,7 @@ public class TestBinaryTreeTraversal {
      * 深度优先搜索
      * @param root
      */
-    private static void dfsTraversal(Node root) {
+    private static void dfsTraversal(TreeNode root) {
         //略，即先序遍历
         //先从根节点出发,沿着左子树纵向遍历直至找到叶子节点，然后回溯到前一个节点，遍历右子树
         return;
