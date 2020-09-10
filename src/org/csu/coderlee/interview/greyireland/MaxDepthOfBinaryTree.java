@@ -6,7 +6,7 @@ import java.util.Queue;
 /**
  * 解决二叉树的相关问题， 就从两种方式入手，广度优先遍历和深度优先遍历。
  * 无论是哪种方式，都是要遍历整棵树，时间复杂度即为O(N)
- * 
+ * https://leetcode-cn.com/problems/maximum-depth-of-binary-tree/
  */
 public class MaxDepthOfBinaryTree {
 
