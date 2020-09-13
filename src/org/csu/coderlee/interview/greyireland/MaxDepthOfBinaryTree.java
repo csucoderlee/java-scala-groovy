@@ -23,8 +23,8 @@ public class MaxDepthOfBinaryTree {
      */
     private static int maxDepthByDfs(TreeNode root) {
         if (root == null) return 0;
-        int depthOfLeft = maxDepthByDfs(root.getLeft());
-        int depthOfRight = maxDepthByDfs(root.getRight());
+        int depthOfLeft = maxDepthByDfs(root.left);
+        int depthOfRight = maxDepthByDfs(root.right);
         return Math.max(depthOfLeft, depthOfRight) + 1;
     }
 
@@ -43,12 +43,12 @@ public class MaxDepthOfBinaryTree {
             while (size > 0) {
                 TreeNode poll = queue.poll();
 
-                if (poll.getLeft() != null) {
-                    queue.add(poll.getLeft());
+                if (poll.left != null) {
+                    queue.add(poll.left);
                 }
 
-                if (poll.getRight() != null) {
-                    queue.add(poll.getRight());
+                if (poll.right != null) {
+                    queue.add(poll.right);
                 }
                 size--;
             }

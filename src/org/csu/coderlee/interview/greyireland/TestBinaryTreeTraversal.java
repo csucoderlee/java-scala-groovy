@@ -30,10 +30,13 @@ public class TestBinaryTreeTraversal {
          *           / \  / \
          *          4  3 8  9
          */
-        TreeNode root = new TreeNode();
-        root.setValue(6);
-        root.setLeft(new TreeNode().setValue(5).setLeft(new TreeNode().setValue(4)).setRight(new TreeNode().setValue(3)));
-        root.setRight(new TreeNode().setValue(7).setLeft(new TreeNode().setValue(8)).setRight(new TreeNode().setValue(9)));
+        TreeNode root = new TreeNode(6);
+        root.left = new TreeNode(5);
+        root.right = new TreeNode(7);
+        root.left.left = new TreeNode(4);
+        root.left.right = new TreeNode(3);
+        root.right.left = new TreeNode(8);
+        root.right.right = new TreeNode(9);
 
         //前序遍历，输出 6 5 4 3 7 8 9
         preOrderTraversal(root);
@@ -73,9 +76,9 @@ public class TestBinaryTreeTraversal {
     private static void preOrderTraversal(TreeNode root) {
 
         if (root == null) return;
-        System.out.println(root.getValue());
-        preOrderTraversal(root.getLeft());
-        preOrderTraversal(root.getRight());
+        System.out.println(root.val);
+        preOrderTraversal(root.left);
+        preOrderTraversal(root.right);
     }
 
     /**
@@ -84,9 +87,9 @@ public class TestBinaryTreeTraversal {
      */
     private static void inOrderTraversal(TreeNode root) {
         if (root == null) return;
-        inOrderTraversal(root.getLeft());
-        System.out.println(root.getValue());
-        inOrderTraversal(root.getRight());
+        inOrderTraversal(root.left);
+        System.out.println(root.val);
+        inOrderTraversal(root.right);
     }
 
     /**
@@ -95,9 +98,9 @@ public class TestBinaryTreeTraversal {
      */
     private static void postOrderTraversal(TreeNode root) {
         if (root == null) return;
-        postOrderTraversal(root.getLeft());
-        postOrderTraversal(root.getRight());
-        System.out.println(root.getValue());
+        postOrderTraversal(root.left);
+        postOrderTraversal(root.right);
+        System.out.println(root.val);
     }
 
     /**
@@ -113,16 +116,16 @@ public class TestBinaryTreeTraversal {
         while (!stack.empty()) {
             //取出根节点
             TreeNode p = stack.pop();
-            System.out.println(p.getValue());
+            System.out.println(p.val);
 
             //放入右子树
-            if (p.getRight() != null) {
-                stack.push(p.getRight());
+            if (p.right != null) {
+                stack.push(p.right);
             }
 
             //放入左子树
-            if (p.getLeft() != null) {
-                stack.push(p.getLeft());
+            if (p.left != null) {
+                stack.push(p.left);
             }
         }
     }
@@ -141,16 +144,16 @@ public class TestBinaryTreeTraversal {
             while (temp != null) {
                 //当前节点的所有左孩子入栈
                 stack.push(temp);
-                temp = temp.getLeft();
+                temp = temp.left;
             }
 
             //取出栈顶元素，即当前最左侧的子节点
             temp = stack.pop();
-            System.out.println(temp.getValue());
+            System.out.println(temp.val);
 
             //栈顶元素存在右节点，则需要继续处理右节点的左节点，即进入重复
-            if (temp.getRight() != null) {
-                temp = temp.getRight();
+            if (temp.right != null) {
+                temp = temp.right;
             } else {
                 temp = null;
             }
@@ -172,20 +175,20 @@ public class TestBinaryTreeTraversal {
 
             while (temp != null) {
                 stack.push(temp);
-                temp = temp.getLeft();
+                temp = temp.left;
             }
 
 
             if (!stack.isEmpty()) {
                 temp = stack.peek();
 
-                if (temp.getRight() == null || temp.getRight() == pre) {
+                if (temp.right == null || temp.right == pre) {
                     temp = stack.pop();
-                    System.out.println(temp.getValue());
+                    System.out.println(temp.val);
                     pre = temp;
                     temp = null;
                 } else {
-                    temp = temp.getRight();
+                    temp = temp.right;
                 }
             }
         }
@@ -203,14 +206,14 @@ public class TestBinaryTreeTraversal {
         while (!queue.isEmpty()) {
 
             TreeNode poll = queue.poll();
-            System.out.println(poll.getValue());
+            System.out.println(poll.val);
 
-            if (poll.getLeft() != null) {
-                queue.add(poll.getLeft());
+            if (poll.left != null) {
+                queue.add(poll.left);
             }
 
-            if (poll.getRight() != null) {
-                queue.add(poll.getRight());
+            if (poll.right != null) {
+                queue.add(poll.right);
             }
         }
 
